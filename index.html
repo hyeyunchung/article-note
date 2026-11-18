@@ -3,196 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인 기사 노트</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>기사 프로젝트 노트</title>
+<!--
+  ✏️ 채워 넣는 방법 (둘 중 편한 쪽)
+  1) 이 파일에서 [대괄호] 글자를 찾아 내 내용으로 바꾼 뒤 저장 → GitHub에 커밋
+  2) 브라우저에서 파란 점선 칸을 눌러 바로 입력 (이 브라우저에만 저장됨)
+-->
 <style>
-:root{
-  --blue:#1764E8; --sky:#49B8F5; --yellow:#F5FF35; --pink:#FF9DCB;
-  --white:#F7FAFF; --navy:#0B1B3F; --muted:#5A6788; --line:#DCE6F7;
-  --grad:linear-gradient(135deg,#1764E8 0%,#2F8BEF 55%,#49B8F5 100%);
-  --r:22px; --max:860px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--navy);background:var(--white);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  :root {
+    /* ChungOh Studio 랜딩 페이지 색 */
+    --bg: #F7FAFF;      /* 화이트 */
+    --ink: #0B1B3F;     /* 딥 네이비 (글자) */
+    --sub: #5A6788;
+    --accent: #1764E8;  /* 비비드 블루 (주색) */
+    --sky: #49B8F5;     /* 스카이 블루 */
+    --yellow: #F5FF35;  /* 레몬 옐로 (포인트) */
+    --pink: #FF9DCB;    /* 캔디 핑크 (포인트) */
+    --soft: #EAF1FD;
+    --line: #DCE6F7;
+    --card: #ffffff;
+    --grad: linear-gradient(135deg,#1764E8 0%,#2F8BEF 55%,#49B8F5 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 64px 24px 48px; }
 
-/* 상단 */
-header{background:var(--grad);color:#fff;padding:56px 0 64px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:var(--sky);filter:blur(80px);opacity:.5;right:-80px;top:-120px}
-.tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-size:13px;font-weight:500;position:relative;z-index:1}
-.tag i{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
-header h1{font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-.03em;line-height:1.2;margin:20px 0 8px;position:relative;z-index:1}
-header h1 .hl{position:relative;z-index:0;color:var(--navy);padding:0 .1em}
-header h1 .hl::before{content:"";position:absolute;inset:.12em -.02em .06em;background:var(--yellow);border-radius:.18em;z-index:-1;transform:skew(-4deg)}
-header p{opacity:.85;font-size:15px;position:relative;z-index:1}
+  /* 상단 */
+  header { text-align: center; margin-bottom: 48px; }
+  .emblem {
+    width: 88px; height: 88px; margin: 0 auto 20px;
+    border-radius: 50%; background: var(--grad);
+    color: #fff; font-size: 26px; box-shadow: 0 0 0 6px var(--yellow); font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tag { color: var(--accent); font-weight: 700; letter-spacing: .08em; font-size: 14px; }
+  h1 { font-size: 40px; margin: 8px 0 12px; letter-spacing: -0.02em; }
+  .lead { font-size: 16px; color: var(--sub); }
 
-main{margin-top:-28px;padding-bottom:60px;position:relative;z-index:2}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;margin-bottom:18px;box-shadow:0 10px 30px rgba(11,27,63,.05)}
-.eyebrow{font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:8px}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
-.card h2{font-size:21px;font-weight:900;letter-spacing:-.02em;margin:8px 0 16px}
+  section { margin-bottom: 40px; }
+  h2 {
+    font-size: 22px; margin-bottom: 16px;
+    padding-left: 12px; border-left: 4px solid var(--accent);
+  }
+  .box { background: var(--card); border-radius: 16px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+  .soft { background: var(--soft); box-shadow: none; }
+  .label { font-size: 14px; font-weight: 700; color: var(--sub); margin-bottom: 6px; }
 
-/* 직접 입력하는 칸 */
-.field{min-height:48px;padding:12px 16px;border-radius:14px;background:var(--white);border:1.5px dashed var(--line);font-size:16px;outline:none;transition:border-color .2s,background .2s}
-.field:focus{border-color:var(--blue);border-style:solid;background:#fff}
-.field:empty::before{content:attr(data-ph);color:#9AA6C2}
-.label{font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 6px}
-.label:first-of-type{margin-top:0}
+  /* 아직 안 채운 칸 = 노란 점선 */
+  .fill { outline: none; border-radius: 10px; padding: 2px 8px; transition: background .2s; }
+  .fill.empty { color: var(--sub); border: 1.5px dashed var(--sky); background: #F2F8FF; }
+  .fill:focus { background: #fff; box-shadow: 0 0 0 2px var(--accent); }
+  .big { font-size: 20px; font-weight: 700; display: block; padding: 10px 14px; }
 
-/* 팀원 */
-.members{display:grid;gap:10px}
-.member{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  /* 팀원 */
+  .members { display: grid; gap: 10px; margin-top: 18px; }
+  .member { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .member .fill { display: block; padding: 10px 14px; background: var(--soft); }
+  .member .fill.empty { background: #F2F8FF; }
 
-/* 주제 */
-.topic{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.box{border-radius:16px;padding:18px;border:1px solid var(--line)}
-.box small{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
-.box b{font-size:22px;font-weight:900}
-.box.main{background:var(--grad);color:#fff;border:none}
-.box.main small{color:rgba(255,255,255,.8)}
-.box.wait{background:var(--white);border-style:dashed}
-.chip{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--pink);color:var(--navy)}
+  /* 주제 */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .grid .box h3 { font-size: 22px; margin-top: 4px; }
+  .status {
+    display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700;
+    padding: 4px 12px; border-radius: 999px; background: var(--pink); color: var(--ink);
+  }
 
-/* 체크리스트 */
-.todo{list-style:none;display:grid;gap:10px}
-.todo li{display:flex;align-items:center;gap:12px}
-.todo input{appearance:none;flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;transition:.2s}
-.todo input:checked{background:var(--blue);border-color:var(--blue)}
-.todo input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.todo .field{flex:1}
-.todo li.done .field{text-decoration:line-through;color:var(--muted)}
+  /* 할 일 */
+  .todo { list-style: none; display: grid; gap: 10px; }
+  .todo li { display: flex; align-items: center; gap: 12px; }
+  .todo input {
+    appearance: none; flex: none; width: 24px; height: 24px; border-radius: 7px;
+    border: 2px solid var(--line); background: #fff; cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .todo input:checked { background: var(--accent); border-color: var(--accent); }
+  .todo input:checked::after {
+    content: ""; width: 6px; height: 11px; border: solid #fff;
+    border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px,-1px);
+  }
+  .todo .fill { flex: 1; padding: 8px 12px; }
+  .todo li.done .fill { text-decoration: line-through; color: var(--sub); }
 
-/* 날짜별 기록 */
-.log{display:grid;gap:12px}
-.entry{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:center}
-.date{font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;color:var(--blue);text-align:center;padding:10px 0;border-radius:14px;background:rgba(23,100,232,.08)}
-.entry.today .date{background:var(--yellow);color:var(--navy)}
-.add{margin-top:14px;font-family:inherit;font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px;border:2px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
-.add:hover{background:var(--blue);color:#fff}
+  /* 날짜별 기록 */
+  .log { display: grid; gap: 10px; }
+  .entry { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; }
+  .date {
+    text-align: center; font-weight: 800; padding: 8px 0; border-radius: 999px;
+    background: var(--soft); color: var(--ink);
+  }
+  .entry.today .date { background: var(--yellow); }
+  .entry .fill { padding: 8px 12px; }
 
-footer{text-align:center;font-size:12px;color:var(--muted);padding-bottom:40px}
+  .add {
+    margin-top: 14px; font: inherit; font-weight: 700; font-size: 14px;
+    padding: 9px 20px; border-radius: 999px; cursor: pointer;
+    background: var(--card); color: var(--accent); border: 1.5px solid var(--accent);
+  }
+  .add:hover { background: var(--accent); color: #fff; }
 
-@media (max-width:560px){
-  header{padding:44px 0 56px}
-  .card{padding:22px 18px}
-  .topic{grid-template-columns:1fr}
-  .member{grid-template-columns:1fr 1fr;gap:8px}
-  .entry{grid-template-columns:64px 1fr}
-  .date{font-size:16px}
-}
+  footer { text-align: center; font-size: 13px; color: var(--sub); margin-top: 32px; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 44px 16px 36px; }
+    h1 { font-size: 30px; }
+    .grid { grid-template-columns: 1fr; }
+    .box { padding: 20px; }
+    .big { font-size: 18px; }
+    .member { gap: 8px; }
+    .entry { grid-template-columns: 62px 1fr; }
+  }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="wrap">
-    <span class="tag"><i></i>생성형 AI 크리에이터 과정</span>
-    <h1>개인 기사 <span class="hl">노트</span></h1>
-    <p>칸을 눌러 바로 입력할 수 있어요.</p>
-  </div>
-</header>
+  <header>
+    <div class="emblem">기사</div>
+    <div class="tag">ARTICLE PROJECT NOTE</div>
+    <h1>기사 프로젝트 노트</h1>
+    <p class="lead">파란 점선 칸은 아직 채우지 않은 곳이에요. 눌러서 입력하세요.</p>
+  </header>
 
-<main class="wrap">
-
-  <section class="card">
-    <span class="eyebrow">Project</span>
+  <section>
     <h2>프로젝트 한 줄</h2>
-    <div class="field" contenteditable="true" data-key="brief" data-ph="브리프 한 줄을 입력하세요"></div>
+    <div class="box">
+      <span class="fill big" data-key="brief">[브리프 한 줄]</span>
+    </div>
   </section>
 
-  <section class="card">
-    <span class="eyebrow">Team</span>
+  <section>
     <h2>팀 이름과 역할</h2>
-    <div class="label">팀 이름</div>
-    <div class="field" contenteditable="true" data-key="team" data-ph="팀 이름 (미정)"></div>
-    <div class="label">팀원 · 역할</div>
-    <div class="members">
-      <div class="member"><div class="field" contenteditable="true" data-key="m1n" data-ph="이름"></div><div class="field" contenteditable="true" data-key="m1r" data-ph="역할"></div></div>
-      <div class="member"><div class="field" contenteditable="true" data-key="m2n" data-ph="이름"></div><div class="field" contenteditable="true" data-key="m2r" data-ph="역할"></div></div>
-      <div class="member"><div class="field" contenteditable="true" data-key="m3n" data-ph="이름"></div><div class="field" contenteditable="true" data-key="m3r" data-ph="역할"></div></div>
+    <div class="box">
+      <div class="label">팀 이름</div>
+      <span class="fill big" data-key="team">[팀 이름]</span>
+      <div class="members" id="members">
+        <div class="member">
+          <span class="fill" data-key="m1n">[이름]</span>
+          <span class="fill" data-key="m1r">[역할]</span>
+        </div>
+      </div>
+      <button class="add" id="addMember" type="button">+ 팀원 추가</button>
     </div>
   </section>
 
-  <section class="card">
-    <span class="eyebrow">Topic</span>
+  <section>
     <h2>주제</h2>
-    <div class="topic">
-      <div class="box main"><small>대주제</small><b>경제</b></div>
-      <div class="box wait"><small>내 앵글</small><span class="chip">내일 정함</span></div>
+    <div class="grid">
+      <div class="box">
+        <div class="label">대주제</div>
+        <h3><span class="fill" data-key="topic">[배정받은 대주제]</span></h3>
+      </div>
+      <div class="box soft">
+        <div class="label">내 앵글</div>
+        <span class="status">내일 정함</span>
+      </div>
     </div>
   </section>
 
-  <section class="card">
-    <span class="eyebrow">To-do</span>
+  <section>
     <h2>할 일 체크리스트</h2>
-    <ul class="todo">
-      <li><input type="checkbox" data-key="c1" aria-label="할 일 1 완료"><div class="field" contenteditable="true" data-key="t1" data-ph="할 일 1"></div></li>
-      <li><input type="checkbox" data-key="c2" aria-label="할 일 2 완료"><div class="field" contenteditable="true" data-key="t2" data-ph="할 일 2"></div></li>
-      <li><input type="checkbox" data-key="c3" aria-label="할 일 3 완료"><div class="field" contenteditable="true" data-key="t3" data-ph="할 일 3"></div></li>
-      <li><input type="checkbox" data-key="c4" aria-label="할 일 4 완료"><div class="field" contenteditable="true" data-key="t4" data-ph="할 일 4"></div></li>
-      <li><input type="checkbox" data-key="c5" aria-label="할 일 5 완료"><div class="field" contenteditable="true" data-key="t5" data-ph="할 일 5"></div></li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <span class="eyebrow">Log</span>
-    <h2>날짜별 기록</h2>
-    <div class="log" id="log">
-      <div class="entry today"><div class="date">11/18</div><div class="field" contenteditable="true" data-key="d1118" data-ph="오늘 한 줄"></div></div>
+    <div class="box">
+      <ul class="todo">
+        <li><input type="checkbox" data-key="c1" aria-label="할 일 1 완료"><span class="fill" data-key="t1">[할 일 1]</span></li>
+        <li><input type="checkbox" data-key="c2" aria-label="할 일 2 완료"><span class="fill" data-key="t2">[할 일 2]</span></li>
+        <li><input type="checkbox" data-key="c3" aria-label="할 일 3 완료"><span class="fill" data-key="t3">[할 일 3]</span></li>
+        <li><input type="checkbox" data-key="c4" aria-label="할 일 4 완료"><span class="fill" data-key="t4">[할 일 4]</span></li>
+        <li><input type="checkbox" data-key="c5" aria-label="할 일 5 완료"><span class="fill" data-key="t5">[할 일 5]</span></li>
+      </ul>
     </div>
-    <button class="add" id="addDay" type="button">+ 날짜 추가</button>
   </section>
 
-</main>
+  <section>
+    <h2>날짜별 기록</h2>
+    <div class="box">
+      <div class="log" id="log">
+        <div class="entry today">
+          <div class="date">11/18</div>
+          <span class="fill" data-key="d1118">[오늘 한 줄]</span>
+        </div>
+      </div>
+      <button class="add" id="addDay" type="button">+ 날짜 추가</button>
+    </div>
+  </section>
 
-<footer>기사 프로젝트 노트 · 2026</footer>
+  <footer>기사 프로젝트 노트 · 생성형 AI 크리에이터 과정</footer>
+</div>
 
 <script>
-// 입력한 내용을 이 브라우저에 저장 (저장이 안 되는 환경이면 그냥 넘어감)
+// 입력 내용은 이 브라우저에 저장 (저장이 막힌 환경이면 그냥 넘어감)
 const store = {
-  get(k){ try{ return localStorage.getItem('pnote_'+k); }catch(e){ return null; } },
-  set(k,v){ try{ localStorage.setItem('pnote_'+k,v); }catch(e){} }
+  get(k){ try { return localStorage.getItem('pn_' + k); } catch(e){ return null; } },
+  set(k, v){ try { localStorage.setItem('pn_' + k, v); } catch(e){} }
 };
+const isBlank = t => /^\s*\[.*\]\s*$/.test(t) || !t.trim();
 
-function bindField(el){
-  const k = el.dataset.key, v = store.get(k);
-  if(v) el.textContent = v;
-  el.addEventListener('input', ()=>{
-    if(!el.textContent.trim()) el.textContent = '';
-    store.set(k, el.textContent);
+function bindFill(el){
+  const ph = el.textContent;              // [대괄호] 원래 글자
+  const saved = store.get(el.dataset.key);
+  if (saved && saved.trim()) el.textContent = saved;
+  el.contentEditable = 'true';
+  const mark = () => el.classList.toggle('empty', isBlank(el.textContent));
+  mark();
+  el.addEventListener('focus', () => {     // 빈칸이면 누를 때 글자 비우기
+    if (isBlank(el.textContent)) el.textContent = '';
   });
+  el.addEventListener('blur', () => {
+    if (!el.textContent.trim()) el.textContent = ph;
+    store.set(el.dataset.key, isBlank(el.textContent) ? '' : el.textContent.trim());
+    mark();
+  });
+  el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } });
 }
 function bindCheck(cb){
-  const k = cb.dataset.key;
-  cb.checked = store.get(k) === '1';
-  cb.closest('li').classList.toggle('done', cb.checked);
-  cb.addEventListener('change', ()=>{
-    store.set(k, cb.checked ? '1' : '0');
-    cb.closest('li').classList.toggle('done', cb.checked);
+  const li = cb.closest('li');
+  cb.checked = store.get(cb.dataset.key) === '1';
+  li.classList.toggle('done', cb.checked);
+  cb.addEventListener('change', () => {
+    store.set(cb.dataset.key, cb.checked ? '1' : '0');
+    li.classList.toggle('done', cb.checked);
   });
 }
 
-// 날짜 추가: 11/18 다음 날부터 하나씩
-const log = document.getElementById('log');
-function addEntry(md){
+document.querySelectorAll('.fill').forEach(bindFill);
+
+// 팀원 추가
+const members = document.getElementById('members');
+let mCount = Math.max(1, parseInt(store.get('mCount') || '1', 10));
+function addMember(n){
   const row = document.createElement('div');
-  row.className = 'entry';
-  row.innerHTML = '<div class="date">'+md+'</div><div class="field" contenteditable="true" data-key="d'+md.replace('/','')+'" data-ph="그날의 한 줄"></div>';
-  log.appendChild(row);
-  bindField(row.querySelector('.field'));
+  row.className = 'member';
+  row.innerHTML = '<span class="fill" data-key="m'+n+'n">[이름]</span><span class="fill" data-key="m'+n+'r">[역할]</span>';
+  members.appendChild(row);
+  row.querySelectorAll('.fill').forEach(bindFill);
 }
-let extra = parseInt(store.get('extraDays') || '0', 10);
-const start = new Date(2026, 10, 18);
-function mdOf(n){ const d = new Date(start); d.setDate(d.getDate()+n); return (d.getMonth()+1)+'/'+d.getDate(); }
-for(let i=1;i<=extra;i++) addEntry(mdOf(i));
-document.getElementById('addDay').addEventListener('click', ()=>{
-  extra++; store.set('extraDays', String(extra)); addEntry(mdOf(extra));
+for (let i = 2; i <= mCount; i++) addMember(i);
+document.getElementById('addMember').addEventListener('click', () => {
+  mCount++; store.set('mCount', String(mCount)); addMember(mCount);
 });
 
-document.querySelectorAll('.field[data-key]').forEach(el=>{ if(!el.closest('.entry') || el.dataset.key==='d1118') bindField(el); });
+// 날짜 추가 (11/19부터 하루씩)
+const log = document.getElementById('log');
+const start = new Date(2026, 10, 18);
+let dCount = parseInt(store.get('dCount') || '0', 10);
+function md(n){ const d = new Date(start); d.setDate(d.getDate() + n); return (d.getMonth()+1) + '/' + d.getDate(); }
+function addDay(n){
+  const m = md(n);
+  const row = document.createElement('div');
+  row.className = 'entry';
+  row.innerHTML = '<div class="date">'+m+'</div><span class="fill" data-key="d'+m.replace('/','')+'">[그날의 한 줄]</span>';
+  log.appendChild(row);
+  bindFill(row.querySelector('.fill'));
+}
 document.querySelectorAll('.todo input').forEach(bindCheck);
+for (let i = 1; i <= dCount; i++) addDay(i);
+document.getElementById('addDay').addEventListener('click', () => {
+  dCount++; store.set('dCount', String(dCount)); addDay(dCount);
+});
 </script>
 </body>
 </html>
